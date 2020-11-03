@@ -1,1 +1,1 @@
-# React-clean-arquitecture
+# React-clean-architecture

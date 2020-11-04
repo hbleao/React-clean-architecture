@@ -1,9 +1,7 @@
-import { HttpStatusCode } from "@/Data/protocols/http/http-response";
-import { HttpPostClient } from "Data/protocols/http/http-post-client";
+import { HttpStatusCode, HttpPostClient } from "@/Data/protocols/http";
 import { Authentication, AuthenticationParams } from "Domain/useCases/authentication";
-import { AccountModel } from "@/Domain/models/account-model";
-import { InvalidCredentialsError } from "@/Domain/errors/invalid-credentials-error";
-import { UnexpectedError } from "@/Domain/errors/unexpected-error";
+import { AccountModel } from "@/Domain/models";
+import { InvalidCredentialsError, UnexpectedError } from "@/Domain/errors";
 
 export class RemoteAuthentication implements Authentication {
   constructor(

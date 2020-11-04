@@ -1,6 +1,10 @@
 # React-clean-architecture
 
 > Arquitetura
+Neste curso será utilizado a arquiteture limpa (Clean architecture), que nos
+fornece basicamente 6 camadas em sua estrutura total sendo elas, Infra, Data,
+Domain, Presentation, Validation e a Main. Está arquitetura é necessaria para
+que possamos desacoplar todo codígo da aplicação.
 
 ### Infra:
 Nesta camada geralmente usamos frameworks e lib externas.

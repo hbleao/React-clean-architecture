@@ -4,7 +4,7 @@ import faker from 'faker';
 
 interface SutTypes {
   sut: RemoteAuthentication;
-  httpPostClientSpy: HttpPostClientSpy
+  httpPostClientSpy: HttpPostClientSpy;
 }
 
 const makeSut = (url: string = 'any_url'): SutTypes => {
@@ -21,6 +21,6 @@ describe('RemoteAuthentication', () => {
     const url = faker.internet.url();
     const { sut, httpPostClientSpy } = makeSut(url);
     await sut.auth();
-    expect(httpPostClientSpy.url).toBe(url)
-  })
+    expect(httpPostClientSpy.url).toBe(url);
+  });
 });

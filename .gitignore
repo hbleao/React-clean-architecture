@@ -1,6 +1,7 @@
 # Common Folders
 node_modules
 .vscode
+public
 
 #tests
 coverage

@@ -1,3 +1,127 @@
+@import '../../assets/styles/abstracts/variables.scss';
+
+.input {
+  padding: 1rem 2rem;
+  min-height: 5rem;
+  border: 1px solid $color-primaryLight;
+  border-radius: 7px;
+  position: relative;
+  transition: all .3s;
+  display: flex;
+  align-items: center;
+  
+  &:focus {
+    border: 2px solid $color-primary;
+  }
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__status {
+    position: absolute;
+    right: 12px;
+    font-size: 8px;
+  }
+
+  &__field {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.btn {
+  font-size: 1.6rem;
+  padding: 2rem 2rem;
+  border: none;
+  border-radius: 7px;
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity 0.3s;
+
+  &-primary {
+    background-color: $color-primary;
+    color: $color-white;
+    font-weight: 700;
+    box-shadow: .3rem 1rem .7rem rgba($color-black, 0.1);
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
 .login {
-  background-color: aqua;
+  height: 100vh;
+  background-color: $color-concrete;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .header {
+    background-color: $color-primary;
+    color: $color-white;
+    border-top: 4rem solid $color-primaryDark;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+      margin-top: 2rem;
+      font-weight: 400;
+    }
+  }
+
+  .form {
+    background-color: $color-white;
+    padding: 3rem 4rem;
+    border-radius: 7px;
+    width: 40rem;
+    margin: 0 auto;
+    box-shadow: .4rem .4rem 0.3rem rgba($color-black, 0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &__title {
+      color: $color-primary;
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    &__new-account {
+      width: max-content;
+      margin: 0 auto;
+      color: $color-primary;
+      font-size: 1.5rem;
+      margin-top: 1.6rem;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__spinner {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__error {
+      margin-bottom: 30px;
+      color: $color-primaryLight;
+    }
+  }
+
+  .footer {
+    background-color: $color-primary;
+    height: 4.8rem;
+
+  }
 }

@@ -1,0 +1,19 @@
+@import '../abstracts/variables.scss';
+
+* {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-default;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button {
+  font-family: 'Roboto', sans-serif;
+}

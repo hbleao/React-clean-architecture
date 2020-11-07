@@ -1,14 +1,18 @@
 import React from 'react';
 
-import Spiner from '@/Presentation/components/spiner';
+import './style.scss';
 
-const FormStatus = () => {
+import Spiner from '@/Presentation/components/spinner';
+
+import { UiFormStatusProps } from './interface';
+
+const UiFormStatus = ({ isLoading, errorMessage }: UiFormStatusProps) => {
   return (
-    <div className="formStatus">
-      <Spiner className="formStatus__spinner" />
-      <span className="formStatus__error">Error</span>
+    <div className="formStatus" role="formStatus">
+      {isLoading && <Spiner className="formStatus__spinner" />}
+      {errorMessage && <span className="formStatus__error">{errorMessage}</span>}
     </div>
   )
 };
 
-export default FormStatus;
+export default UiFormStatus;

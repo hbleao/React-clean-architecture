@@ -22,11 +22,11 @@ const Login = ({
       <Header title="4Dev - Enquetes para programadores" />
       <Form handleSubmit={() => { }} >
         <h2 className="login__title-form">Login</h2>
-        <Input type="email" placeholder="Digite seu email" />
-        <Input type="password" placeholder="Digite sua senha" />
-        <Button appearence='primary' disabled text="Entrar" role="login-button" />
+        <Input type="email" placeholder="Digite seu email" role="email" title="Campo obrigatório" />
+        <Input type="password" placeholder="Digite sua senha" role="password" title="Campo obrigatório" />
+        <Button appearence='primary' disabled text="Entrar" role="button" />
         <span className="login__new-account">Criar conta</span>
-        <FormStatus isLoading={isLoading} errorMessage={errorMessage} role="login-formStatus" />
+        <FormStatus isLoading={isLoading} errorMessage={errorMessage} role="formStatus" />
       </Form>
       <Footer />
     </div>

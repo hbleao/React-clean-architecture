@@ -17,7 +17,8 @@
   &__new-account {
     width: max-content;
     margin: 0 auto;
-    color: $color-primary;
+    color: $color-primaryLight;
+    font-weight: 500;
     font-size: 1.5rem;
     margin-top: 1.6rem;
     text-align: center;
@@ -27,5 +28,4 @@
       text-decoration: underline;
     }
   }
-
 }

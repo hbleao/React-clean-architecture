@@ -3,15 +3,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, '..', 'src', 'Main', 'index.tsx'),
+  entry: path.join(__dirname, '..', '..', 'src', 'Main', 'index.tsx'),
   output: {
-    path: path.join(__dirname, '..', 'public', 'js'),
+    path: path.join(__dirname, '..', '..', 'public', 'js'),
     filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss'],
     alias: {
-      '@': path.join(__dirname, '..', 'src'),
+      '@': path.join(__dirname, '..', '..', 'src'),
     },
   },
   module: {
@@ -54,7 +54,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, '..', 'public'),
+    contentBase: path.join(__dirname, '..', '..', 'public'),
     writeToDisk: true,
     port: 3000,
     hot: true,

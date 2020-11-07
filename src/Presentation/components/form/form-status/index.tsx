@@ -6,9 +6,9 @@ import Spiner from '@/Presentation/components/spinner';
 
 import { UiFormStatusProps } from './interface';
 
-const UiFormStatus = ({ isLoading, errorMessage }: UiFormStatusProps) => {
+const UiFormStatus = ({ isLoading, errorMessage, role }: UiFormStatusProps) => {
   return (
-    <div className="formStatus" role="formStatus">
+    <div className="formStatus" role={role}>
       {isLoading && <Spiner className="formStatus__spinner" />}
       {errorMessage && <span className="formStatus__error">{errorMessage}</span>}
     </div>

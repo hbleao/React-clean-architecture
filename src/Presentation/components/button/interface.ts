@@ -5,5 +5,5 @@ type typeButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 export interface ButtonProps extends typeButtonProps {
   className?: string;
   text?: string;
-  appearence?: 'primary' | 'second';
+  appearence: 'primary' | 'second';
 }

@@ -35,4 +35,12 @@
       color: $color-white;
     }
   }
+
+  &:disabled {
+    background-color: $color-disabled;
+    color: $color-doveGray;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

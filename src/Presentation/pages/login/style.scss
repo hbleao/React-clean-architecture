@@ -7,48 +7,25 @@
   flex-direction: column;
   justify-content: space-between;
   
-  .form {
-    background-color: $color-white;
-    padding: 3rem 4rem;
-    border-radius: 7px;
-    width: 40rem;
+  &__title-form {
+    color: $color-primary;
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  &__new-account {
+    width: max-content;
     margin: 0 auto;
-    box-shadow: .4rem .4rem 0.3rem rgba($color-black, 0.1);
-    display: flex;
-    flex-direction: column;
+    color: $color-primary;
+    font-size: 1.5rem;
+    margin-top: 1.6rem;
     text-align: center;
+    cursor: pointer;
 
-    &__title {
-      color: $color-primary;
-      font-size: 3rem;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    &__new-account {
-      width: max-content;
-      margin: 0 auto;
-      color: $color-primary;
-      font-size: 1.5rem;
-      margin-top: 1.6rem;
-      text-align: center;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    &__spinner {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    &__error {
-      margin-bottom: 30px;
-      color: $color-primaryLight;
+    &:hover {
+      text-decoration: underline;
     }
   }
+
 }

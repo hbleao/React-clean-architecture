@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 
 import '@/Presentation/assets/styles/global.scss';
 
-import Login from '@/Presentation/pages/login';
+import Router from '@/Presentation/routes';
 
-ReactDOM.render(<Login />, document.querySelector('.main'));
+ReactDOM.render(<Router />, document.querySelector('.main'));

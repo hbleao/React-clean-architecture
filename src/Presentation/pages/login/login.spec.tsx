@@ -7,10 +7,13 @@ import { Validation } from '@/Presentation/protocols/validation';
 
 class ValidationSpy implements Validation {
   public errorMessage: string;
-  public input: object;
+  filedName: string;
+  fieldValue: string;
 
-  validate(input: object): string {
-    this.input = input;
+  validate(filedName: string, fieldValue: string): string {
+    this.filedName = filedName;
+    this.fieldValue = fieldValue;
+
     return this.errorMessage;
   };
 };
@@ -59,7 +62,8 @@ describe('Login Component', () => {
     const inputEmail = sut.getByRole('email');
 
     fireEvent.input(inputEmail, { target: { value: 'any_email' } });
-    expect(validationSpy.input).toEqual({ email: 'any_email' });
+    expect(validationSpy.filedName).toBe('email');
+    expect(validationSpy.fieldValue).toBe('any_email');
   });
 
   it('Should call Validation with correct password', () => {
@@ -67,6 +71,8 @@ describe('Login Component', () => {
     const inputPassword = sut.getByRole('password');
 
     fireEvent.input(inputPassword, { target: { value: 'any_password' } });
-    expect(validationSpy.input).toEqual({ password: 'any_password' });
+
+    expect(validationSpy.filedName).toBe('password');
+    expect(validationSpy.fieldValue).toBe('any_password');
   });
 });

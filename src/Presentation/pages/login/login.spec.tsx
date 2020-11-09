@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent, RenderResult } from '@testing-library/react';
+import faker from 'faker';
 
 import Login from './index';
 
@@ -47,19 +48,22 @@ describe('Login Component', () => {
   it('Should call Validation with correct email', () => {
     const { sut, validationSpy } = makeSut();
     const inputEmail = sut.getByRole('email');
+    const email = faker.internet.email();
 
-    fireEvent.input(inputEmail, { target: { value: 'any_email' } });
+    fireEvent.input(inputEmail, { target: { value: email } });
+
     expect(validationSpy.filedName).toBe('email');
-    expect(validationSpy.fieldValue).toBe('any_email');
+    expect(validationSpy.fieldValue).toBe(email);
   });
 
   it('Should call Validation with correct password', () => {
     const { sut, validationSpy } = makeSut();
     const inputPassword = sut.getByRole('password');
+    const password = faker.internet.password();
 
-    fireEvent.input(inputPassword, { target: { value: 'any_password' } });
+    fireEvent.input(inputPassword, { target: { value: password } });
 
     expect(validationSpy.filedName).toBe('password');
-    expect(validationSpy.fieldValue).toBe('any_password');
+    expect(validationSpy.fieldValue).toBe(password);
   });
 });

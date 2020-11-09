@@ -3,20 +3,7 @@ import { render, fireEvent, RenderResult } from '@testing-library/react';
 
 import Login from './index';
 
-import { Validation } from '@/Presentation/protocols/validation';
-
-class ValidationSpy implements Validation {
-  public errorMessage: string;
-  filedName: string;
-  fieldValue: string;
-
-  validate(filedName: string, fieldValue: string): string {
-    this.filedName = filedName;
-    this.fieldValue = fieldValue;
-
-    return this.errorMessage;
-  };
-};
+import { ValidationSpy } from '@/Presentation/test';
 
 type SutTypes = {
   sut: RenderResult;

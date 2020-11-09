@@ -1,4 +1,11 @@
 export interface UiLoginProps {
-  isLoading: boolean;
-  errorMessage: string;
+  state: {
+    isLoading: boolean;
+    email: string;
+    password: string;
+    error: string;
+    emailError: string;
+    passwordError: string;
+  };
+  setState: (e) => any;
 }

@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import UiLoginProps from './ui';
 
-const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+import { Validation } from '@/Presentation/protocols/validation';
+
+interface LoginProps {
+  validation: Validation;
+}
+
+const Login = ({ validation }: LoginProps) => {
+  const [state, setState] = useState({
+    isLoading: false,
+    email: '',
+    password: '',
+    error: null,
+    emailError: 'Campo obrigatório',
+    passwordError: 'Campo obrigatório'
+  });
+
+  useEffect(() => {
+    validation.validate({ email: state.email });
+  }, [state.email]);
 
   return (
     <UiLoginProps
-      isLoading={isLoading}
-      errorMessage={errorMessage}
+      state={state}
+      setState={setState}
     />
   );
 };

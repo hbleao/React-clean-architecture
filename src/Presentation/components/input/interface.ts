@@ -1,6 +1,9 @@
-import { InputHTMLAttributes } from 'react';
+import React from 'react';
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+
+export interface InputProps extends Props {
   error?: boolean;
   title?: string;
+  roleError?: string;
 }

@@ -28,8 +28,8 @@ const Login = ({
           value={state.email}
           onChange={e => setState({ ...state, email: e.target.value })}
           role="email"
-          roleError="emailError"
-          title="Campo obrigatório"
+          roleStatus="email-status"
+          title={state.emailStatus}
         />
         <Input
           type="password"
@@ -37,8 +37,8 @@ const Login = ({
           value={state.password}
           onChange={e => setState({ ...state, password: e.target.value })}
           role="password"
-          roleError="passwordError"
-          title="Campo obrigatório"
+          roleStatus="password-status"
+          title={state.passwordStatus}
         />
         <Button
           appearence='primary'
@@ -50,7 +50,7 @@ const Login = ({
         <FormStatus
           isLoading={state.isLoading}
           errorMessage={state.error}
-          role="formStatus"
+          role="form-status"
         />
       </Form>
       <Footer />

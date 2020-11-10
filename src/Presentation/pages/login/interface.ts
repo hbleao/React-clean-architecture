@@ -4,8 +4,8 @@ export interface UiLoginProps {
     email: string;
     password: string;
     error: string;
-    emailError: string;
-    passwordError: string;
+    emailStatus: string;
+    passwordStatus: string;
   };
   setState: (e) => any;
 }

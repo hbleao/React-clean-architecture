@@ -14,17 +14,17 @@ const Login = ({ validation }: LoginProps) => {
     email: '',
     password: '',
     error: null,
-    emailError: 'Campo obrigatório',
-    passwordError: 'Campo obrigatório'
+    emailStatus: '',
+    passwordStatus: ''
   });
 
   useEffect(() => {
-    validation.validate('email', state.email);
-  }, [state.email]);
-
-  useEffect(() => {
-    validation.validate('password', state.password);
-  }, [state.password]);
+    setState({
+      ...state,
+      passwordStatus: validation.validate('password', state.password),
+      emailStatus: validation.validate('email', state.email)
+    })
+  }, [state.email, state.password]);
 
   return (
     <UiLoginProps

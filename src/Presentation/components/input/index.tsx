@@ -4,16 +4,15 @@ import './style.scss';
 
 import { InputProps } from './interface';
 
-const Input = ({ error, title, roleError, ...rest }: InputProps) => {
-  const inputRef = useRef(null);
+const Input = ({ error, title = 'sem nada', roleStatus, ...rest }: InputProps) => {
   const enableInput = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.readOnly = false;
   };
 
   return (
     <div className="input">
-      <input className="input__field" readOnly onFocus={enableInput} ref={inputRef} {...rest} />
-      <span className="input__status" role={roleError} title={title}>🔴</span>
+      <input className="input__field" readOnly onFocus={enableInput} {...rest} />
+      <span className="input__status" role={roleStatus} title={title}>🔴</span>
     </div>
   )
 };

@@ -24,25 +24,25 @@ const Login = ({
         <h2 className="login__title-form">Login</h2>
         <Input
           type="email"
+          name="email"
           placeholder="Digite seu email"
           value={state.email}
           onChange={e => setState({ ...state, email: e.target.value })}
-          role="email"
-          roleStatus="email-status"
           title={state.emailStatus}
+          role="email"
         />
         <Input
           type="password"
+          name="password"
           placeholder="Digite sua senha"
           value={state.password}
           onChange={e => setState({ ...state, password: e.target.value })}
-          role="password"
-          roleStatus="password-status"
           title={state.passwordStatus}
+          role="password"
         />
         <Button
           appearence='primary'
-          disabled
+          disabled={!!state.emailStatus || !!state.passwordStatus}
           text="Entrar"
           role="button"
         />

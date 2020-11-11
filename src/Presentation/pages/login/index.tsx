@@ -11,9 +11,9 @@ interface LoginProps {
 const Login = ({ validation }: LoginProps) => {
   const [state, setState] = useState({
     isLoading: false,
+    error: '',
     email: '',
     password: '',
-    error: null,
     emailStatus: '',
     passwordStatus: ''
   });
@@ -22,7 +22,7 @@ const Login = ({ validation }: LoginProps) => {
     setState({
       ...state,
       passwordStatus: validation.validate('password', state.password),
-      emailStatus: validation.validate('email', state.email)
+      emailStatus: validation.validate('email', state.email),
     })
   }, [state.email, state.password]);
 

@@ -11,9 +11,9 @@ type SutTypes = {
   validationStub: ValidationStub;
 };
 
-const makeSut = (): SutTypes => {
+const makeSut = (caseError?: boolean): SutTypes => {
   const validationStub = new ValidationStub();
-  validationStub.errorMessage = faker.random.words();
+  validationStub.errorMessage = caseError ? null : faker.random.words();
   const sut = render(<Login validation={validationStub} />);
 
   return {
@@ -24,7 +24,7 @@ const makeSut = (): SutTypes => {
 
 describe('Login Component', () => {
 
-  beforeEach(cleanup);
+  afterEach(cleanup);
 
   it('Should not render spinner and error on start', () => {
     const { sut } = makeSut();
@@ -38,18 +38,6 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(true);
   });
 
-  it('Should render all inputs with madatory filling', () => {
-    const { sut, validationStub } = makeSut();
-    const emailStatus = sut.getByRole('email-status');
-    const passwordStatus = sut.getByRole('password-status');
-
-    expect(emailStatus.title).toBe(validationStub.errorMessage);
-    expect(emailStatus.textContent).toBe('🔴');
-
-    expect(passwordStatus.title).toBe(validationStub.errorMessage);
-    expect(passwordStatus.textContent).toBe('🔴');
-  });
-
   it('Should show email error if Validation fails', () => {
     const { sut, validationStub } = makeSut();
     const emailInput = sut.getByRole('email');
@@ -59,5 +47,51 @@ describe('Login Component', () => {
 
     expect(emailStatus.title).toBe(validationStub.errorMessage);
     expect(emailStatus.textContent).toBe('🔴');
+  });
+
+  it('Should show password error if Validation fails', () => {
+    const { sut, validationStub } = makeSut();
+    const passwordInput = sut.getByRole('password');
+    const passwordStatus = sut.getByRole('password-status');
+
+    fireEvent.input(passwordInput, { target: faker.internet.email() });
+
+    expect(passwordStatus.title).toBe(validationStub.errorMessage);
+    expect(passwordStatus.textContent).toBe('🔴');
+  });
+
+  it('Should show valid email state if Validation success', () => {
+    const { sut, validationStub } = makeSut(true);
+    const emailInput = sut.getByRole('email');
+    const emailStatus = sut.getByRole('email-status');
+
+    fireEvent.input(emailInput, { target: faker.internet.email() });
+
+    expect(emailStatus.title).toBe('Tudo certo');
+    expect(emailStatus.textContent).toBe('🟢');
+  });
+
+  it('Should show valid password state if Validation success', () => {
+    const { sut, validationStub } = makeSut(true);
+    const passwordInput = sut.getByRole('password');
+    const passwordStatus = sut.getByRole('password-status');
+
+    fireEvent.input(passwordInput, { target: faker.internet.password() });
+
+    expect(passwordStatus.title).toBe('Tudo certo');
+    expect(passwordStatus.textContent).toBe('🟢');
+  });
+
+  it('Should enable submit button if form is valid', () => {
+    const { sut, validationStub } = makeSut(true);
+
+    const emailInput = sut.getByRole('email');
+    fireEvent.input(emailInput, { target: faker.internet.email() });
+
+    const passwordInput = sut.getByRole('password');
+    fireEvent.input(passwordInput, { target: faker.internet.password() });
+
+    const submitButton = sut.getByRole('button') as HTMLButtonElement;
+    expect(submitButton.disabled).toBe(false);
   });
 });

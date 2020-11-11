@@ -3,12 +3,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import UiLoginProps from './ui';
 
 import { Validation } from '@/Presentation/protocols/validation';
+import { Authentication } from '@/Domain/useCases';
 
 interface LoginProps {
   validation: Validation;
+  authentication: Authentication
 }
 
-const Login = ({ validation }: LoginProps) => {
+const Login = ({ validation, authentication }: LoginProps) => {
   const [state, setState] = useState({
     isLoading: false,
     error: '',
@@ -26,13 +28,14 @@ const Login = ({ validation }: LoginProps) => {
     })
   }, [state.email, state.password]);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e): Promise<void> => {
     e.preventDefault();
-    setState({
-      ...state,
-      isLoading: true
+    setState({ ...state, isLoading: true });
+    await authentication.auth({
+      email: state.email,
+      password: state.password
     })
-  }, []);
+  }, [state.email, state.password]);
 
   return (
     <UiLoginProps

@@ -4,10 +4,11 @@ import faker from 'faker';
 
 import Login from './index';
 
-import { ValidationStub } from '@/Presentation/test';
+import { ValidationStub, AuthenticationSpy } from '@/Presentation/test';
 
 type SutTypes = {
   sut: RenderResult;
+  authenticationSpy: AuthenticationSpy
 };
 
 type Params = {
@@ -16,11 +17,15 @@ type Params = {
 
 const makeSut = (params?: Params): SutTypes => {
   const validationStub = new ValidationStub();
+  const authenticationSpy = new AuthenticationSpy();
+
   validationStub.errorMessage = params?.validationError;
-  const sut = render(<Login validation={validationStub} />);
+
+  const sut = render(<Login validation={validationStub} authentication={authenticationSpy} />);
 
   return {
     sut,
+    authenticationSpy
   };
 };
 
@@ -115,6 +120,25 @@ describe('Login Component', () => {
 
     const spinner = sut.getByRole('spinner');
     expect(spinner).toBeTruthy();
+  });
 
+  it('Should call Authentication with correct values', () => {
+    const { sut, authenticationSpy } = makeSut();
+    const email = faker.internet.email();
+    const password = faker.internet.password();
+
+    const emailInput = sut.getByRole('email');
+    fireEvent.input(emailInput, { target: { value: email } });
+
+    const passwordInput = sut.getByRole('password');
+    fireEvent.input(passwordInput, { target: { value: password } });
+
+    const submitButton = sut.getByRole('button') as HTMLButtonElement;
+    fireEvent.click(submitButton);
+
+    expect(authenticationSpy.params).toEqual({
+      email,
+      password
+    });
   });
 });

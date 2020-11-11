@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Header from '@/Presentation/components/header';
-import Footer from '@/Presentation/components/footer';
+import Header from '@/presentation/components/header';
+import Footer from '@/presentation/components/footer';
 
 export interface LayoutProps {
   title?: string;

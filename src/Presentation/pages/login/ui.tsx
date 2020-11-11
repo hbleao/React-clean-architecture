@@ -9,7 +9,7 @@ import {
   FormStatus,
   Button,
   Input
-} from '@/Presentation/components';
+} from '@/presentation/components';
 
 import { UiLoginProps } from './interface';
 
@@ -43,7 +43,7 @@ const Login = ({
         />
         <Button
           appearence='primary'
-          disabled={!!state.emailStatus || !!state.passwordStatus}
+          disabled={!!state.emailStatus || !!state.passwordStatus || state.isLoading}
           text="Entrar"
           role="button"
         />

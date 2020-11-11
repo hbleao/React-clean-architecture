@@ -4,7 +4,7 @@ import faker, { fake } from 'faker';
 
 import Login from './index';
 
-import { ValidationStub, AuthenticationSpy } from '@/Presentation/test';
+import { ValidationStub, AuthenticationSpy } from '@/presentation/test';
 
 type SutTypes = {
   sut: RenderResult;
@@ -137,5 +137,13 @@ describe('Login Component', () => {
       email,
       password
     });
+  });
+
+  it('Should call Authentication only once', () => {
+    const { sut, authenticationSpy } = makeSut();
+    simulateValidSubmit(sut);
+    simulateValidSubmit(sut);
+
+    expect(authenticationSpy.callsCount).toBe(1);
   });
 });

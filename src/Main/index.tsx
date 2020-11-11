@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@/Presentation/assets/styles/global.scss';
+import '@/presentation/assets/styles/global.scss';
 
-import Router from '@/Presentation/routes';
+import Router from '@/presentation/routes';
 
 ReactDOM.render(<Router />, document.querySelector('.main'));

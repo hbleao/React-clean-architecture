@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Login from '@/Presentation/pages/login';
+import Login from '@/presentation/pages/login';
 
 const Router = () => {
   return (

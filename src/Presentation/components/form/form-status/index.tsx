@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-import Spiner from '@/Presentation/components/spinner';
+import Spiner from '@/presentation/components/spinner';
 
 import { UiFormStatusProps } from './interface';
 

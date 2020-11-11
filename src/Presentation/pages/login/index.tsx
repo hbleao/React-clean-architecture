@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import UiLoginProps from './ui';
 
-import { Validation } from '@/Presentation/protocols/validation';
-import { Authentication } from '@/Domain/useCases';
+import { Validation } from '@/presentation/protocols/validation';
+import { Authentication } from '@/domain/useCases';
 
 interface LoginProps {
   validation: Validation;
@@ -30,6 +30,7 @@ const Login = ({ validation, authentication }: LoginProps) => {
 
   const handleSubmit = useCallback(async (e): Promise<void> => {
     e.preventDefault();
+
     setState({ ...state, isLoading: true });
     await authentication.auth({
       email: state.email,

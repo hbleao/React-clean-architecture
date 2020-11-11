@@ -8,4 +8,5 @@ export interface UiLoginProps {
     passwordStatus: string;
   };
   setState: (e) => any;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import UiLoginProps from './ui';
 
@@ -26,10 +26,19 @@ const Login = ({ validation }: LoginProps) => {
     })
   }, [state.email, state.password]);
 
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    setState({
+      ...state,
+      isLoading: true
+    })
+  }, []);
+
   return (
     <UiLoginProps
       state={state}
       setState={setState}
+      handleSubmit={handleSubmit}
     />
   );
 };

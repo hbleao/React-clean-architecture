@@ -4,10 +4,11 @@ import './style.scss';
 
 export interface SpinerProps {
   className?: string;
+  role?: string;
 }
 
-const Spiner = ({ className }: SpinerProps) => (
-  <div className={className}>
+const Spiner = ({ className, role }: SpinerProps) => (
+  <div role={role} className={className}>
     <div className="spiner">
       <div />
       <div />

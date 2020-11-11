@@ -15,12 +15,13 @@ import { UiLoginProps } from './interface';
 
 const Login = ({
   state,
-  setState
+  setState,
+  handleSubmit
 }: UiLoginProps) => {
   return (
     <div className="login">
       <Header title="4Dev - Enquetes para programadores" />
-      <Form handleSubmit={() => { }} >
+      <Form handleSubmit={handleSubmit} >
         <h2 className="login__title-form">Login</h2>
         <Input
           type="email"
@@ -51,6 +52,7 @@ const Login = ({
           isLoading={state.isLoading}
           errorMessage={state.error}
           role="form-status"
+          roleSpinner="spinner"
         />
       </Form>
       <Footer />

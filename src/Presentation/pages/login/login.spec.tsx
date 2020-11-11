@@ -100,4 +100,21 @@ describe('Login Component', () => {
     const submitButton = sut.getByRole('button') as HTMLButtonElement;
     expect(submitButton.disabled).toBe(false);
   });
+
+  it('Should enable submit button if form is valid', () => {
+    const { sut } = makeSut();
+
+    const emailInput = sut.getByRole('email');
+    fireEvent.input(emailInput, { target: faker.internet.email() });
+
+    const passwordInput = sut.getByRole('password');
+    fireEvent.input(passwordInput, { target: faker.internet.password() });
+
+    const submitButton = sut.getByRole('button') as HTMLButtonElement;
+    fireEvent.click(submitButton);
+
+    const spinner = sut.getByRole('spinner');
+    expect(spinner).toBeTruthy();
+
+  });
 });

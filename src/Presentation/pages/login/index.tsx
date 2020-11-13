@@ -35,10 +35,12 @@ const Login = ({ validation, authentication }: LoginProps) => {
       if (state.emailStatus || state.passwordStatus) return;
 
       setState({ ...state, isLoading: true });
-      await authentication.auth({
+      const account = await authentication.auth({
         email: state.email,
         password: state.password
-      })
+      });
+
+      localStorage.setItem('accessToken', account.accessToekn);
     } catch (err) {
       setState({
         ...state,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import UiLoginProps from './ui';
 
 import { Validation } from '@/presentation/protocols/validation';
@@ -8,9 +8,10 @@ import { Authentication } from '@/domain/useCases';
 interface LoginProps {
   validation: Validation;
   authentication: Authentication
-}
+};
 
 const Login = ({ validation, authentication }: LoginProps) => {
+  const history = useHistory();
   const [state, setState] = useState({
     isLoading: false,
     error: '',
@@ -40,7 +41,8 @@ const Login = ({ validation, authentication }: LoginProps) => {
         password: state.password
       });
 
-      localStorage.setItem('accessToken', account.accessToekn);
+      localStorage.setItem('accessToken', account.accessToken);
+      history.replace('/');
     } catch (err) {
       setState({
         ...state,

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router } from 'react-router';
+import { createMemoryHistory } from 'history';
 import { render, fireEvent, RenderResult, cleanup, waitFor } from '@testing-library/react';
 import faker from 'faker';
 import 'jest-localstorage-mock';
@@ -17,13 +19,18 @@ type Params = {
   validationError?: string;
 }
 
+const history = createMemoryHistory({ initialEntries: ['/login'] });
 const makeSut = (params?: Params): SutTypes => {
   const validationStub = new ValidationStub();
   const authenticationSpy = new AuthenticationSpy();
 
   validationStub.errorMessage = params?.validationError;
 
-  const sut = render(<Login validation={validationStub} authentication={authenticationSpy} />);
+  const sut = render(
+    <Router history={history}>
+      <Login validation={validationStub} authentication={authenticationSpy} />
+    </Router>
+  );
 
   return {
     sut,
@@ -31,15 +38,16 @@ const makeSut = (params?: Params): SutTypes => {
   };
 };
 
-const simulateValidSubmit = (
+const simulateValidSubmit = async (
   sut: RenderResult,
   email = faker.internet.email(),
   password = faker.internet.password()
-): void => {
+): Promise<void> => {
   populateEmailField(sut, email);
   populatePasswordField(sut, password);
-  const submitButton = sut.getByRole('button') as HTMLButtonElement;
-  fireEvent.click(submitButton);
+  const form = sut.getByRole('form');
+  fireEvent.submit(form);
+  await waitFor(() => form);
 };
 
 
@@ -59,11 +67,11 @@ const populatePasswordField = (
   fireEvent.input(passwordInput, { target: { value: password } });
 };
 
-const simulateSatusForField = (sut: RenderResult, fieldName: string, validationError?: string): void => {
+function testStatusForField(sut: RenderResult, fieldName: string, validationError?: string): void {
   const fieldStatus = sut.getByRole(`${fieldName}-status`);
   expect(fieldStatus.title).toBe(validationError || 'Tudo certo');
   expect(fieldStatus.textContent).toBe(validationError ? '🔴' : '🟢');
-};
+}
 
 describe('Login Component', () => {
 
@@ -89,26 +97,26 @@ describe('Login Component', () => {
     const validationError = faker.random.words();
     const { sut } = makeSut({ validationError });
     populateEmailField(sut);
-    simulateSatusForField(sut, 'email', validationError);
+    testStatusForField(sut, 'email', validationError);
   });
 
   it('Should show password error if Validation fails', () => {
     const validationError = faker.random.words();
     const { sut } = makeSut({ validationError });
     populatePasswordField(sut);
-    simulateSatusForField(sut, 'password', validationError);
+    testStatusForField(sut, 'password', validationError);
   });
 
   it('Should show valid email state if Validation success', () => {
     const { sut } = makeSut();
     populateEmailField(sut);
-    simulateSatusForField(sut, 'email');
+    testStatusForField(sut, 'email');
   });
 
   it('Should show valid password state if Validation success', () => {
     const { sut } = makeSut();
     populatePasswordField(sut);
-    simulateSatusForField(sut, 'password');
+    testStatusForField(sut, 'password');
   });
 
   it('Should enable submit button if form is valid', () => {
@@ -124,18 +132,18 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(false);
   });
 
-  it('Should enable submit button if form is valid', () => {
+  it('Should enable submit button if form is valid', async () => {
     const { sut } = makeSut();
-    simulateValidSubmit(sut);
+    await simulateValidSubmit(sut);
     const spinner = sut.getByRole('spinner');
     expect(spinner).toBeTruthy();
   });
 
-  it('Should call Authentication with correct values', () => {
+  it('Should call Authentication with correct values', async () => {
     const { sut, authenticationSpy } = makeSut();
     const email = faker.internet.email();
     const password = faker.internet.password();
-    simulateValidSubmit(sut, email, password);
+    await simulateValidSubmit(sut, email, password);
 
     expect(authenticationSpy.params).toEqual({
       email,
@@ -143,19 +151,10 @@ describe('Login Component', () => {
     });
   });
 
-  it('Should call Authentication only once', () => {
-    const { sut, authenticationSpy } = makeSut();
-    simulateValidSubmit(sut);
-    simulateValidSubmit(sut);
-
-    expect(authenticationSpy.callsCount).toBe(1);
-  });
-
-  it('Should call Authentication if form is invalid', () => {
+  it('Should call Authentication if form is invalid', async () => {
     const validationError = faker.random.words();
     const { sut, authenticationSpy } = makeSut({ validationError });
-    populateEmailField(sut);
-    fireEvent.submit(sut.getByRole('form'));
+    await simulateValidSubmit(sut);
 
     expect(authenticationSpy.callsCount).toBe(0);
   });
@@ -163,13 +162,10 @@ describe('Login Component', () => {
   it('Should present error if Authentication fails', async () => {
     const { sut, authenticationSpy } = makeSut();
     const error = new InvalidCredentialsError();
-    const errorWrap = sut.getByRole('form-status');
 
     jest.spyOn(authenticationSpy, 'auth').mockReturnValueOnce(Promise.reject(error));
 
-    simulateValidSubmit(sut);
-
-    await waitFor(() => errorWrap);
+    await simulateValidSubmit(sut);
 
     const mainError = sut.getByRole('error-message');
 
@@ -180,11 +176,21 @@ describe('Login Component', () => {
     const { sut, authenticationSpy } = makeSut();
     const form = sut.getByRole('form');
 
-    simulateValidSubmit(sut);
+    await simulateValidSubmit(sut);
 
-    await waitFor(() => form);
-
-    expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToekn)
-
+    expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToken);
+    expect(history.length).toBe(1);
+    expect(history.location.pathname).toBe('/');
   });
+
+  it('Should go to signup page', async () => {
+    const { sut } = makeSut();
+    const register = sut.getByRole('signup');
+
+    fireEvent.click(register);
+
+    expect(history.length).toBe(2);
+    expect(history.location.pathname).toBe('/signup');
+  });
+
 });

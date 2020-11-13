@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.scss';
 
@@ -42,18 +43,19 @@ const Login = ({
           role="password"
         />
         <Button
+          type="submit"
           appearence='primary'
           disabled={!!state.emailStatus || !!state.passwordStatus || state.isLoading}
           text="Entrar"
           role="button"
         />
-        <span className="login__new-account">Criar conta</span>
+        <Link to="signup" role="signup" className="login__new-account">Criar conta</Link>
         <FormStatus
           isLoading={state.isLoading}
           errorMessage={state.error}
           role="form-status"
           roleSpinner="spinner"
-          roleError="error-message"
+          roleError="error-message "
         />
       </Form>
       <Footer />

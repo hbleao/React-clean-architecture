@@ -53,6 +53,7 @@ const Login = ({
           errorMessage={state.error}
           role="form-status"
           roleSpinner="spinner"
+          roleError="error-message"
         />
       </Form>
       <Footer />

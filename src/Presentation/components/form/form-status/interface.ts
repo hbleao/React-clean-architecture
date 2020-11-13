@@ -3,4 +3,5 @@ export interface UiFormStatusProps {
   errorMessage?: string;
   role?: string;
   roleSpinner?: string;
+  roleError?: string;
 }

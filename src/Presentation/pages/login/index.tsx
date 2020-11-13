@@ -29,15 +29,23 @@ const Login = ({ validation, authentication }: LoginProps) => {
   }, [state.email, state.password]);
 
   const handleSubmit = useCallback(async (e): Promise<void> => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    if (state.emailStatus || state.passwordStatus) return;
+      if (state.emailStatus || state.passwordStatus) return;
 
-    setState({ ...state, isLoading: true });
-    await authentication.auth({
-      email: state.email,
-      password: state.password
-    })
+      setState({ ...state, isLoading: true });
+      await authentication.auth({
+        email: state.email,
+        password: state.password
+      })
+    } catch (err) {
+      setState({
+        ...state,
+        isLoading: false,
+        error: err.message
+      })
+    }
   }, [state.email, state.password]);
 
   return (

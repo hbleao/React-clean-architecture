@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, RenderResult, cleanup, waitFor } from '@testing-library/react';
 import faker from 'faker';
+import 'jest-localstorage-mock';
 
 import Login from './index';
 
@@ -67,6 +68,8 @@ const simulateSatusForField = (sut: RenderResult, fieldName: string, validationE
 describe('Login Component', () => {
 
   afterEach(cleanup);
+
+  beforeEach(localStorage.clear);
 
   it('Should not render spinner and error on start', () => {
     const validationError = faker.random.words();
@@ -171,5 +174,17 @@ describe('Login Component', () => {
     const mainError = sut.getByRole('error-message');
 
     expect(mainError.textContent).toBe(error.message);
+  });
+
+  it('Should add accessToken to localStorage on success', async () => {
+    const { sut, authenticationSpy } = makeSut();
+    const form = sut.getByRole('form');
+
+    simulateValidSubmit(sut);
+
+    await waitFor(() => form);
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToekn)
+
   });
 });

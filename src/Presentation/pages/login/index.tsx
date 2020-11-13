@@ -31,6 +31,8 @@ const Login = ({ validation, authentication }: LoginProps) => {
   const handleSubmit = useCallback(async (e): Promise<void> => {
     e.preventDefault();
 
+    if (state.emailStatus || state.passwordStatus) return;
+
     setState({ ...state, isLoading: true });
     await authentication.auth({
       email: state.email,

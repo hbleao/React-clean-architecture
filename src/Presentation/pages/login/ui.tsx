@@ -21,7 +21,7 @@ const Login = ({
   return (
     <div className="login">
       <Header title="4Dev - Enquetes para programadores" />
-      <Form handleSubmit={handleSubmit} >
+      <Form role="form" handleSubmit={handleSubmit} >
         <h2 className="login__title-form">Login</h2>
         <Input
           type="email"

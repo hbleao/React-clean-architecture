@@ -4,9 +4,9 @@ import './style.scss';
 
 import { FormProps } from './interface';
 
-const Form = ({ handleSubmit, children }: FormProps) => {
+const Form = ({ handleSubmit, role, children }: FormProps) => {
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form role={role} className="form" onSubmit={handleSubmit}>
       {children}
     </form>
   )

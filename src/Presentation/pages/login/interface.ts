@@ -9,4 +9,4 @@ export interface UiLoginProps {
   };
   setState: (e) => any;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-}
+};

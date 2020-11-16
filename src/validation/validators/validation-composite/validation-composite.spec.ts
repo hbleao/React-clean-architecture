@@ -26,7 +26,7 @@ describe('ValidationComposite', () => {
     const fieldName = faker.database.column();
     const errorMessage = faker.random.words();
 
-    const { sut, fieldValidationsSpy } = makeSut(fieldName)
+    const { sut, fieldValidationsSpy } = makeSut(fieldName);
 
     fieldValidationsSpy[0].error = new Error(errorMessage);
     fieldValidationsSpy[1].error = new Error(faker.random.word());

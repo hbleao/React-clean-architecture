@@ -33,3 +33,11 @@ Presentation, como por exemplo validações de email e campos obrigatórios.
 Nesta camada é uma camada que depende de todas as outras, ele é resposável por
 interligar todas as outras camadas e também deve ser o ponto de entrada
 da aplicação, geralmente onde está o index da aplicação.
+
+> Design Patterns 
+
+- Factory
+
+- Composite
+
+- Builder

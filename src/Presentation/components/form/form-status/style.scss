@@ -6,12 +6,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  };
   
   &__error {
     font-size: 2rem;
     color: $color-primaryLight;
     margin: 2rem 0;
-  }
-}
+  };
+};
 

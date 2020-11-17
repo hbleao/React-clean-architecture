@@ -12,7 +12,7 @@ export class ValidationBuilder {
     return new ValidationBuilder(fieldName, []);
   };
 
-  require(): ValidationBuilder {
+  required(): ValidationBuilder {
     this.validations.push(new RequiredFieldValidation(this.fieldName));
     return this;
   };

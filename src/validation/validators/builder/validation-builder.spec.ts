@@ -11,7 +11,7 @@ import { ValidationBuilder } from './validation-builder';
 describe('ValidationBuilder', () => {
   it('Sould return RequiredField Validation', () => {
     const field = faker.database.column();
-    const validations = ValidationBuilder.field(field).require().build();
+    const validations = ValidationBuilder.field(field).required().build();
     expect(validations).toEqual([new RequiredFieldValidation(field)]);
   });
 
@@ -29,7 +29,7 @@ describe('ValidationBuilder', () => {
 
   it('Should return a list validations', () => {
     const field = faker.database.column();
-    const validators = ValidationBuilder.field(field).require().min(5).email().build();
+    const validators = ValidationBuilder.field(field).required().min(5).email().build();
     expect(validators).toEqual([
       new RequiredFieldValidation(field),
       new MinLengthValidation(field, 5),

@@ -6,7 +6,7 @@
     "react, clean architecture, frontend, react architecture"
   ],
   "author": "Henrique Leão",
-  "license": "GNU GPL3",
+  "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --open --config ./config/webpack/webpack.config.js",
     "test": "jest --passWithNoTests --no-cache --runInBand",

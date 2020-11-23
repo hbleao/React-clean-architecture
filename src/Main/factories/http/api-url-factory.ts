@@ -1,3 +1,3 @@
 export const makeApiUrl = (): string => {
-  return 'https://fordevs.heroku.com/api/login';
+  return 'http://fordevs.herokuapp.com/api/login';
 };

@@ -9,9 +9,10 @@
   };
   
   &__error {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    display: block;
     color: $color-primaryLight;
-    margin: 2rem 0;
+    margin-top: 2rem;
   };
 };
 

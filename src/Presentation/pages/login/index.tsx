@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import UiLoginProps from './ui';
+
+import { Authentication } from '@/domain/useCases';
+import UiLogin from '@/presentation/pages/login/ui';
 
 import { Validation } from '@/presentation/protocols/validation';
-import { Authentication } from '@/domain/useCases';
 
 interface LoginProps {
   validation: Validation;
@@ -52,7 +53,7 @@ const Login = ({ validation, authentication }: LoginProps) => {
   }, [state.email, state.password]);
 
   return (
-    <UiLoginProps
+    <UiLogin
       state={state}
       setState={setState}
       handleSubmit={handleSubmit}

@@ -1,7 +1,7 @@
 import faker from 'faker';
 
 import { ValidationSpy } from "@/validation/test";
-import { ValidationComposite } from "./validation-composite";
+import { ValidationComposite } from "@/validation/validators";
 
 type SutTypes = {
   sut: ValidationComposite;

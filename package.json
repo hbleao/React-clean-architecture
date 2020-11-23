@@ -1,19 +1,26 @@
 {
   "name": "react-clean-arquitecture",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "dev": "webpack-dev-server --open --config ./config/webpack/webpack.config.js",
-    "test": "jest --passWithNoTests",
-    "test:watch": "yarn test -- --watchAll",
-    "test:staged": "yarn test -- --findRelatedTests",
-    "test:ci": "yarn test -- --coverage"
-  },
+  "description": "Software developed with react, Clean Architecture, Typescript, TDD e SOLID",
   "keywords": [
     "react, clean architecture, frontend, react architecture"
   ],
   "author": "Henrique Leão",
-  "license": "ISC",
+  "license": "GNU GPL3",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config ./config/webpack/webpack.config.js",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "yarn test -- --watchAll",
+    "test:staged": "yarn test -- --findRelatedTests",
+    "test:ci": "yarn test -- --coverage"
+  },
+  "dependencies": {
+    "@testing-library/react": "^11.1.1",
+    "axios": "^0.21.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/faker": "^5.1.4",
@@ -44,12 +51,5 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "@testing-library/react": "^11.1.1",
-    "axios": "^0.21.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
   }
 }

@@ -5,7 +5,7 @@ import { render, fireEvent, RenderResult, cleanup, waitFor } from '@testing-libr
 import faker from 'faker';
 import 'jest-localstorage-mock';
 
-import Login from './index';
+import { Login } from '@/presentation/pages';
 
 import { ValidationStub, AuthenticationSpy } from '@/presentation/test';
 import { InvalidCredentialsError } from '@/domain/errors';

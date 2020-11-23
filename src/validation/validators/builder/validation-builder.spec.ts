@@ -5,7 +5,7 @@ import {
   EmailValidation,
   MinLengthValidation
 } from "@/validation/validators";
-import { ValidationBuilder } from './validation-builder';
+import { ValidationBuilder } from '@/validation/validators';
 
 
 describe('ValidationBuilder', () => {

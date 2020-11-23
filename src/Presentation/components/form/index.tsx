@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-import { FormProps } from './interface';
+import { FormProps } from '@/presentation/components/form/interface';
 
 const Form = ({ handleSubmit, role, children }: FormProps) => {
   return (

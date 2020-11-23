@@ -1,4 +1,4 @@
-import { FieldValidation } from "../protocols/required-field-validation";
+import { FieldValidation } from "@/validation/protocols/required-field-validation";
 
 export class ValidationSpy implements FieldValidation {
   error: Error = null;

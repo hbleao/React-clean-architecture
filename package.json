@@ -10,11 +10,11 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config ./config/webpack/webpack.config.js",
     "test": "jest --passWithNoTests --no-cache --runInBand",
-    "test:watch": "yarn test -- --watchAll",
-    "test:staged": "yarn test -- --findRelatedTests",
-    "test:ci": "yarn test -- --coverage",
-    "test:coveralls": "yarn test:ci && coveralls < coverage/lcov.info",
-    "update": "yarn npm-check -u -s"
+    "test:watch": "npm test -- --watchAll",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage",
+    "test:coveralls": "npm test:ci && coveralls < coverage/lcov.info",
+    "update": "npm run npm-check -u -s"
   },
   "dependencies": {
     "@testing-library/react": "^11.1.1",

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hbleao/React-clean-architecture.svg?branch=main)](https://travis-ci.org/hbleao/React-clean-architecture)
+
 # React-clean-architecture
 
 > Arquitetura

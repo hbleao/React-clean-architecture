@@ -1,5 +1,5 @@
 {
   "*.{ts.tsx}": [
-    "npm run test:ci"
+    "yarn test:ci"
   ]
 }

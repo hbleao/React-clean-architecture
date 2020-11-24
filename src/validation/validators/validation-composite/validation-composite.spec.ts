@@ -32,7 +32,7 @@ describe('ValidationComposite', () => {
     fieldValidationsSpy[1].error = new Error(faker.random.word());
 
     const error = sut.validate(fieldName, faker.random.word());
-    expect(error).toBe(error);
+    expect(error).toBe(errorMessage);
   });
 
   it('Should not return error if any validation', () => {
